@@ -1,0 +1,18 @@
+VERBOSE=on
+DEBUG=yes
+PATH=/bin:/usr/bin:/usr/local/bin:
+MAILDIR=/var/mail
+DEFAULT=/var/mail
+SHELL=/bin/bash
+LOGFILE=/var/log/procmaillog
+LOCKFILE=/var/mail/.lockmail
+LINEBUF=16384
+SENDMAIL=/usr/sbin/sendmail
+
+:0c:
+/var/mail/examples
+
+:0c:
+* ^From: *badguy@example.com*
+/var/mail/phishings
+
