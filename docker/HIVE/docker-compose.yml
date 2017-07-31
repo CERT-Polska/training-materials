@@ -1,4 +1,8 @@
 version: "2"
+
+#build:
+#  context: ../MISP/MyOrg
+
 services:
   elasticsearch:
     image: elasticsearch:2
@@ -24,11 +28,32 @@ services:
     depends_on:
       - elasticsearch
       - cortex
+      - misp
     ports:
       - "127.0.0.1:9000:9000"
 
     volumes:
       - ./hive/application.conf:/etc/thehive/application.conf
+  misp_db:
+    build:
+      context: ../MISP/MyOrg
+    image: my_org_misp
+    command:
+     -  /init-db
+    volumes:
+     - /tmp/misp-db-myorg:/var/lib/mysql
+
+  misp:
+    depends_on:
+      - misp_db
+    image: my_org_misp
+    ports:
+     - "127.0.0.1:10443:443"
+     - "127.0.0.1:10080:80"
+     - "127.0.0.1:10666:6666"
+    volumes:
+     - /tmp/misp-db-myorg:/var/lib/mysql
+
 
 
 

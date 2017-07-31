@@ -1,0 +1,8 @@
+*.swp
+<<<<<<< HEAD
+docker/HIVE/elasticsearch/data
+docker/intelmq/logs
+docker/intelmq/file-output
+=======
+docker/HIVE/elasticsearch/data/hive
+>>>>>>> 97005b6bbaa98c4b2216127251b7733064271228

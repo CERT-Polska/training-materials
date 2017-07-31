@@ -1,0 +1,8 @@
+PATH=/bin:/usr/bin:/usr/local/bin:
+DEFAULT=/var/mail
+LOCKFILE=/var/mail/employees/.lockmail
+FORMAIL=/usr/bin/formail
+MAILDIR=/var/mail/examples
+LOGFILE=/var/log/procmail/procmail.log
+VERBOSE=yes
+

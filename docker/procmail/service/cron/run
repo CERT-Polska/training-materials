@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+if [[ `ps aux | grep cron | wc -l`  > 1 ]]; then
+    echo -e "cron already running :)"
+    exit
+fi
+
+exec /usr/sbin/cron 2>&1

@@ -1,0 +1,30 @@
+PATH=/bin:/usr/bin:/usr/local/bin:
+DEFAULT=/var/mail
+LOCKFILE=/var/mail/employees/.lockmail
+MAILDIR=/var/mail/examples
+LOGFILE=/var/log/procmail/procmail.log
+VERBOSE=yes
+
+EMP=$1
+
+:0
+* 1^0 ^Subject:.*Look at this funny picture.*
+* 1^0 ^Subject:.*Sweets in the kitchen.*
+* 1^0 ^Subject:.*My sweet kitten.*
+${MAILDIR}/trash
+
+:0:${LOCKFILE}
+* -2^0
+* 1^0 ^From:.*crandall@yanu\.enisa\.ex.*
+* 1^0 ^From:.*drezet@yanu\.enisa\.ex.*
+* 1^0 ^From:.*miyop@yanu\.enisa\.ex.*
+* 2^0 ^Subject:.*Fwd: Invoice no: 26781263896.*
+* 2^0 ^Subject:.*Fwd: Invoice no: 89685958466.*
+* 2^0 ^Subject:.*Delivery Failed.*
+* 2^0 ^Subject:.*Delivery Status Notification.*
+* 2^0 ^Subject:.*Delivery Problem.*
+/var/mail/inspect/malicious3
+
+:0
+/var/mail/employees/${EMP}/
+
