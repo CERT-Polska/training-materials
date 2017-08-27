@@ -1,0 +1,15 @@
+language: python
+python:
+  - 2.7
+cache: pip
+install:
+  - pip install yara-python
+  - pip install psutil
+  - pip install colorama
+  - pip install pylzma
+  - pip install netaddr
+
+script:
+  - python ./loki.py --noprocs --noindicator --dontwait --debug -p ./test
+  - python ./loki.py --noprocs --noindicator --dontwait --debug --intense -p ./test
+  - python ./loki.py --noprocs --noindicator --dontwait --debug --csv -p ./test

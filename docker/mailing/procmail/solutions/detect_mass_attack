@@ -1,0 +1,24 @@
+PATH=/bin:/usr/bin:/usr/local/bin:
+DEFAULT=/var/mail
+LOCKFILE=/var/mail/employees/.lockmail
+LOGFILE=/var/log/procmail/procmail.log
+VERBOSE=yes
+
+EMP=$1
+
+:0B:
+* 1^0 .*company_income_2Q_2017\.exe.*
+* 1^0 .*payment_report_2017\.scr.*
+* 1^0 .*photos\.pif.*
+{
+  :0c:
+  /var/mail/inspect/malicious
+
+  :0
+  ! security@grumpycatinc.enisa.ex
+}
+
+:0
+/dev/null
+#/var/mail/employees/${EMP}/
+

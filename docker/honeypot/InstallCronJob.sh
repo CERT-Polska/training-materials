@@ -8,3 +8,9 @@ echo -e "* * * * * root (sleep 15; $cmd)" | tee -a $out
 echo -e "* * * * * root (sleep 30; $cmd)" | tee -a $out
 echo -e "* * * * * root (sleep 45; $cmd)" | tee -a $out
 chmod 0600 $out
+
+out="/etc/cron.d/service_db_converter"
+cmd="/usr/bin/python /opt/recon/db_converter.py"
+echo -e "MAILTO=\"\"" | tee -a $out
+echo -e "* * * * * root $cmd" | tee -a $out
+chmod 0600 $out

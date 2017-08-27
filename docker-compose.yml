@@ -1,6 +1,6 @@
 # This is a WORK IN PROGRESS "master docker-compose file", do not edit and do not use
 
-version: '2.1'
+version: "2.1"
 
 services:
    # JAREK
@@ -18,15 +18,7 @@ services:
          aliases:
            - company-db.enisa.ex
      healthcheck:
-       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-
-   sinking-ship:
-     image: sinking-ship
-     networks:
-       enisanet:
-         ipv4_address: 10.34.1.5
-         aliases:
-           - sinking-ship.enisa.ex
+       test: ["CMD", "sleep", "5"]
 
    company-wordpress:
      depends_on:
@@ -53,16 +45,6 @@ services:
          aliases:
            - company-wordpress.enisa.ex
 
-   john-pc:
-     depends_on:
-       - company-wordpress
-     image: john-pc
-     networks:
-       enisanet:
-         ipv4_address: 10.34.1.8
-         aliases:
-           - john-pc.enisa.ex
-
    # KRZYSIEK
    elasticsearch:
      image: elasticsearch:2
@@ -82,11 +64,10 @@ services:
 
 
    cortex:
-     image: certbdf/cortex:latest
-     ports:
-       - "127.0.0.1:9001:9000"
+     image: cortex:1.0
      volumes:
        - ./docker/HIVE/cortex/application.conf:/etc/cortex/application.conf
+       - ./docker/HIVE/cortex/analyzers:/opt/Cortex-Analyzers/analyzers
      networks:
        enisanet:
          ipv4_address: 10.34.1.10
@@ -94,13 +75,11 @@ services:
            - cortex.enisa.ex
    
    thehive:
-     image: certbdf/thehive:latest
+     image: thehive:1.0
      depends_on:
        - elasticsearch
        - cortex
        - misp
-     ports:
-       - "127.0.0.1:9000:9000"
      volumes:
        - ./docker/HIVE/hive/application.conf:/etc/thehive/application.conf
      networks:
@@ -109,42 +88,39 @@ services:
          aliases:
            - thehive.enisa.ex
 
-   #misp_db:
-   #  image: my_org_misp
-   #  command:
-   #   -  /init-db
-   #  volumes:
-   #   - /tmp/misp-db-myorg:/var/lib/mysql
-   #  networks:
-   #    enisanet:
-   #      ipv4_address: 10.34.1.12
-   #      aliases:
-   #        - misp_db.enisa.ex
-   
    misp:
-     # depends_on:
-     #  - misp_db
-     image: my_org_misp
-     ports:
-      - "127.0.0.1:10443:443"
-      - "127.0.0.1:10080:80"
-      - "127.0.0.1:10666:6666"
+     image: grumpycatinc-misp
      volumes:
-      - /tmp/misp-db-myorg:/var/lib/mysql
+      - ./docker/MISP/data/misp-db-grumpycatinc:/var/lib/mysql
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.12
+         aliases:
+           - grumpycatinc.enisa.ex
+
+   wildhamstersec-misp:
+     image: wildhamstersec-misp
+     volumes:
+      - ./docker/MISP/data/misp-db-wildhamstersec:/var/lib/mysql
      networks:
        enisanet:
          ipv4_address: 10.34.1.13
          aliases:
-           - misp.enisa.ex
+           - wildhamstersec.enisa.ex
   
    intelmq:
-     image: alexdelarge/intelmq
+     image: intelmq:1.0
+     depends_on:
+       - honeypot
+       - elasticsearch5
      volumes:
-       - ./docker/intelmq/logs:/opt/intelmq/var/log
-       - ./docker/intelmq/file-output:/opt/intelmq/var/lib/file-output
+    #   - ./docker/intelmq/logs:/opt/intelmq/var/log
+       - ./docker/intelmq/file-output/events.txt:/opt/intelmq/var/lib/bots/file-output/events.txt
        - ./docker/intelmq/config/defaults.conf:/opt/intelmq/etc/defaults.conf
        - ./docker/intelmq/config/pipeline.conf:/opt/intelmq/etc/pipeline.conf
        - ./docker/intelmq/config/runtime.conf:/opt/intelmq/etc/runtime.conf
+    #  - ./docker/intelmq/honeypot:/tmp/honeypot
+       - ./docker/honeypot/data:/tmp/honeypot
      links:
        - redis
      networks:
@@ -160,23 +136,61 @@ services:
          ipv4_address: 10.34.1.15
          aliases:
            - redis.enisa.ex
-
-   # MALWARE
-   deadly_ursa:
-     image: deadly-ursa
+   
+   elasticsearch5:
+     image: elasticsearch:5
      networks:
        enisanet:
-         ipv4_address: 10.34.1.16
+         ipv4_address: 10.34.1.20
          aliases:
-           - deadly-ursa.enisa.ex
+           - elasticsearch5.enisa.ex
+     
+
+   # MALWARE
+#   deadly_ursa:
+#     image: deadly-ursa
+#     networks:
+#       enisanet:
+#         ipv4_address: 10.34.1.16
+#         aliases:
+#           - deadly-ursa.enisa.ex
 
    moloch:
      image: moloch
+     ports:
+       - "127.0.0.1:8005:8005"
      networks:
        enisanet:
          ipv4_address: 10.34.1.17
          aliases:
            - moloch.enisa.ex
+
+   procmail:
+     image: grumpycatinc-mailing
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.18
+         aliases:
+           - grumpycatinc.enisa.ex
+   kibana:
+     image: kibana:5.5.1
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.21
+         aliases:
+           - kibana.enisa.ex
+     environment:
+       - ELASTICSEARCH_URL=http://10.34.1.20:9200
+   
+   honeypot:
+     image: grumpycatinc-honeypot
+     volumes:
+       - ./docker/honeypot/data:/opt/shared
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.19
+         aliases:
+           - hunter.enisa.ex
 
 
 volumes:

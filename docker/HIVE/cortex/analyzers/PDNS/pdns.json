@@ -1,0 +1,13 @@
+{
+    "name": "PDNS",
+    "version": "1.0",
+    "author": "cert pl",
+    "url": "",
+    "license": "AGPL-V3",
+    "description": "Query Passive DNS",
+    "dataTypeList": ["domain"],
+    "command": "PDNS/pdns.py",
+    "config": {
+        "required_prop": "anyvalue"
+    }
+}

@@ -11,7 +11,7 @@ $config = array(
 		),
 	'MISP'             =>
 		array(
-			'baseurl' => 'https://wildhamstersec.enisa.ex:20443',
+			'baseurl' => 'https://wildhamstersec.enisa.ex',
 			'footermidleft'                  => '',
 			'footermidright'                 => '',
 			'org'                            => 'WILDHAMSTERSEC',
@@ -37,7 +37,9 @@ $config = array(
 			'unpublishedprivate'             => false,
 			'disable_emailing'               => false,
 			'live'	=> true,
-			'uuid'	=> '597860b6-01fc-4535-bf38-003aac110003'
+			'uuid'	=> '597860b6-01fc-4535-bf38-003aac110003',
+			'host_org_id'	=> 'WILDHAMSTERSEC',
+			'proposals_block_attributes'	=> true
 		),
 	'GnuPG'            =>
 		array(

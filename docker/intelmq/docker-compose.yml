@@ -1,14 +1,22 @@
 intelmq:
-  image: alexdelarge/intelmq
+  image: intelmq
   hostname: intelmq
   volumes:
     - ./logs:/opt/intelmq/var/log
-    - ./file-output:/opt/intelmq/var/lib/file-output
-    - ./config/defaults.conf:/opt/intelmq/etc/defaults.conf
-    - ./config/pipeline.conf:/opt/intelmq/etc/pipeline.conf
-    - ./config/runtime.conf:/opt/intelmq/etc/runtime.conf
+#    - ./file-output:/opt/intelmq/var/lib/file-output
+    - ./config/defaults.conf:/opt/intelmq/etc/defaults.conf:rw
+    - ./config/pipeline.conf:/opt/intelmq/etc/pipeline.conf:rw
+    - ./config/runtime.conf:/opt/intelmq/etc/runtime.conf:rw
+    - ./honeypot:/opt/intelmq/honeypot
   links:
     - redis
+  ports:
+    - "127.0.0.1:8080:80"
 redis:
   image: redis
   hostname: redis
+ 
+elasticsearch:
+  image: elasticsearch:5
+  hostname: elasticsearch
+

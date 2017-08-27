@@ -1,0 +1,27 @@
+PATH=/bin:/usr/bin:/usr/local/bin:
+DEFAULT=/var/mail
+LOCKFILE=/var/mail/employees/.lockmail
+LOGFILE=/var/log/procmail/procmail.log
+VERBOSE=yes
+
+EMP=$1
+
+:0
+* ^From:.*badguy@baddomain\.org.*
+* ^Subject:.*somenastysubject.*
+{
+  :0c:
+  /var/mail/inspect/malicious2
+
+  :0
+  ! security@grumpycatinc.enisa.ex
+}
+
+:0c:
+/var/mail/examples/example2
+
+:0c:
+| tee -a /var/mail/examples/mainlog2
+
+:0
+/var/mail/employees/${EMP}/

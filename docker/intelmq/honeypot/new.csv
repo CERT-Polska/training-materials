@@ -1,0 +1,9 @@
+3,2017-07-27 12:34:36,67.67.67.67,/comments,"POST /comments HTTP/1.1
+Accept: */*
+Content-Length: 24
+Content-Type: application/x-www-form-urlencoded
+Host: localhost
+Referer: http://localhost:80
+User-Agent: python-requests/2.2.1 CPython/2.7.6 Linux/4.4.0-83-generic
+
+comment=c2&submit=Submit",comments,

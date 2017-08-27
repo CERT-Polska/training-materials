@@ -1,0 +1,18 @@
+PATH=/bin:/usr/bin:/usr/local/bin:
+DEFAULT=/var/mail
+LOCKFILE=/var/mail/employees/.lockmail
+LOGFILE=/var/log/procmail/procmail.log
+VERBOSE=yes
+
+EMP=$1
+
+:0c:
+/var/mail/examples/example1
+
+:0c:
+* ^From:.*Hictir@yanu\.enisa\.ex.*
+! security@grumpycatinc.enisa.ex
+
+:0
+/var/mail/employees/${EMP}/
+

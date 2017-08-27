@@ -1,0 +1,52 @@
+EMP=$1
+INCLUDERC=/opt/procmail/common.rc
+
+ORIG_SUBJ=`$FORMAIL -xSubject`
+
+:0
+* ^Subject:.*Fwd: Invoice no: 26781263896.* |\
+  ^Subject:.*Fwd: Invoice no: 89685958466.*
+{
+  SUBJ="[MALICIOUS INVOICE]$ORIG_SUBJ"
+
+  :0c:
+  /var/mail/inspect/malicious_invoice
+
+  :0
+  {
+    :0 fhw
+    | $FORMAIL -I "Subject: $SUBJ"
+ 
+    :0c:
+    /var/mail/employees/${EMP}
+      
+    :0
+    ! root@grumpycatinc.enisa.ex
+  }
+}
+
+:0
+* ^Subject:.*Delivery Failed.* |\
+  ^Subject:.*Delivery Status Notification.* |\
+  ^Subject:.*Delivery Problem.*
+{
+  SUBJ="[MALICIOUS DELIVERY]$ORIG_SUBJ"
+
+  :0c:
+  /var/mail/inspect/malicious_delivery
+
+  :0
+  {
+    :0 fhw
+    | $FORMAIL -I "Subject: $SUBJ"
+ 
+    :0c:
+    /var/mail/employees/${EMP}
+      
+    :0
+    ! root@grumpycatinc.enisa.ex
+  }
+}
+
+:0
+/var/mail/employees/${EMP}/
