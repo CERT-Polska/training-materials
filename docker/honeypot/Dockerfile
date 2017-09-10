@@ -13,8 +13,8 @@ RUN chmod 777 /var/log/service_recon
 RUN mkdir /opt/shared
 
 #copy recon script
-RUN mkdir -p /opt/recon/dorks
-COPY ./recon/dorks /opt/recon/dorks
+RUN mkdir -p /opt/recon/injection_codes
+COPY ./recon/injection_codes /opt/recon/injection_codes
 COPY ./recon/service_recon.py /opt/recon
 COPY ./recon/db_converter.py /opt/recon
 

@@ -1,5 +1,4 @@
 # Based on https://github.com/danielguerra69/docker-moloch
-# Prerequisite: docker pull elasticsearch:5.2.2-alpine
 
 FROM ubuntu:16.04
 

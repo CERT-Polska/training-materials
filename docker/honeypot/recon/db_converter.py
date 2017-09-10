@@ -1,8 +1,10 @@
 import csv
 import sqlite3
 import logging
+import re
 
 from logging.handlers import RotatingFileHandler
+from random import randint
 
 logger = logging.getLogger('service_recon')
 logger.setLevel(logging.DEBUG)
@@ -34,8 +36,24 @@ with open('/opt/shared/output.csv', 'w') as f:
     writer.writerow(header)
 
     for r in rows:
+
         ip = r[2].split(":")[0]
-        writer.writerow((r[0], r[1], ip, r[3], r[4], r[5], r[6]))
+
+        attack = randint(0, 100)
+        if attack < 25:
+            dork = "/vp-json/wp/v2/posts/5/?id=3abc"
+            ip = '10.34.1.7'
+            req = re.sub('POST.+', 'POST %s HTTP/1.1' % dork, r[4])
+            tmp = dork[1:]
+            writer.writerow((r[0], r[1], ip, dork, req, dork[1:], r[6]))
+        elif attack > 75:
+            dork = "/vp-json/wp/v2/posts/"
+            ip = '10.34.1.7'
+            req = re.sub('POST.+', 'POST %s HTTP/1.1' % dork, r[4])
+            tmp = dork[1:]
+            writer.writerow((r[0], r[1], ip, dork, req, dork[1:], r[6]))
+        else:
+            writer.writerow((r[0], r[1], ip, r[3], r[4], r[5], r[6]))
 
     #writer.writerows(rows)
 

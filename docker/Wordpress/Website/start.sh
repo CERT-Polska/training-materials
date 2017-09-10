@@ -2,6 +2,7 @@
 
 cd /var/www/html
 if [ ! -f .initialized ]; then
+    sudo -u www-data wp core download --version=4.7.1
     sudo -u www-data wp core config --dbname=wordpress --dbuser=root --dbpass=902rsdnhiv23qre --dbhost=mysql
     sudo -u www-data wp core install --url=http://company-wordpress.enisa.ex --title=WordPress --admin_user=admin --admin_password=123 --admin_email=admin@example.com
     sudo -u www-data wp rewrite structure '/%year%/%monthnum%/%postname%'

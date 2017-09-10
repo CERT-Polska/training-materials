@@ -9,6 +9,11 @@ WORKDIR /etc/ssl/private
 COPY ./certs/misp.crt .
 COPY ./certs/misp.key .
 
+WORKDIR /var/www/MISP/app/webroot/img
+COPY ./misp-logo.png .
+RUN chmod 750 misp-logo.png
+RUN chown www-data:www-data misp-logo.png
+
 WORKDIR /var/www/MISP/app/Config
 COPY ./config.php .
 RUN chmod 750 config.php

@@ -14,6 +14,3 @@ a2enmod rewrite
 mkdir /var/www/html -p
 chown www-data:www-data /var/www/html
 
-cd /var/www/html
-sudo -u www-data wp core download --version=4.7.1
-

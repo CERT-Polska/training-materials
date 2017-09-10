@@ -1,0 +1,175 @@
+version: "2.1"
+
+services:
+   company-db:
+     image: company-db
+     volumes:
+       - db_data:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: 902rsdnhiv23qre
+       MYSQL_DATABASE: wordpress
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.2
+         aliases:
+           - company-db.enisa.ex
+     healthcheck:
+       test: ["CMD", "sleep", "20"]
+
+   company-wordpress:
+     depends_on:
+       - company-db
+     image: company-wordpress
+     links:
+       - company-db:mysql
+     volumes:
+       - ./data/wp_site:/var/www/html
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.3
+         aliases:
+           - company-wordpress.enisa.ex
+     healthcheck:
+       test: ["CMD", "curl", "http://company-wordpress.enisa.ex?p=6"]
+
+   elasticsearch:
+     image: elasticsearch:2
+     command: [
+       -Des.script.inline=on,
+       -Des.cluster.name=hive,
+       -Des.threadpool.index.queue_size=100000,
+       -Des.threadpool.search.queue_size=100000,
+       -Des.threadpool.bulk.queue_size=1000]
+     volumes:
+       - ./docker/HIVE/elasticsearch/data:/usr/share/elasticsearch/data
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.9
+         aliases:
+           - elasticsearch.enisa.ex
+
+   cortex:
+     image: cortex:1.0
+     volumes:
+       - ./docker/HIVE/cortex/application.conf:/etc/cortex/application.conf
+       - ./docker/HIVE/cortex/analyzers:/opt/Cortex-Analyzers/analyzers
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.10
+         aliases:
+           - cortex.enisa.ex
+   
+   thehive:
+     image: thehive:1.0
+     depends_on:
+       - elasticsearch
+       - cortex
+       - misp
+     volumes:
+       - ./docker/HIVE/hive/application.conf:/etc/thehive/application.conf
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.11
+         aliases:
+           - thehive.enisa.ex
+
+   misp:
+     image: grumpycatinc-misp
+     volumes:
+      - ./docker/MISP/data/misp-db-grumpycatinc:/var/lib/mysql
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.12
+         aliases:
+           - grumpycatinc.enisa.ex
+
+   wildhamstersec-misp:
+     image: wildhamstersec-misp
+     volumes:
+      - ./docker/MISP/data/misp-db-wildhamstersec:/var/lib/mysql
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.13
+         aliases:
+           - wildhamstersec.enisa.ex
+  
+   intelmq:
+     image: intelmq:1.0
+     depends_on:
+       - honeypot
+       - elasticsearch5
+     volumes:
+       - ./docker/intelmq/file-output/events.txt:/opt/intelmq/var/lib/bots/file-output/events.txt
+       - ./docker/intelmq/config/defaults.conf:/opt/intelmq/etc/defaults.conf
+       - ./docker/intelmq/config/pipeline.conf:/opt/intelmq/etc/pipeline.conf
+       - ./docker/intelmq/config/runtime.conf:/opt/intelmq/etc/runtime.conf
+       - ./docker/honeypot/data:/tmp/honeypot
+     links:
+       - redis
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.14
+         aliases:
+           - intelmq.enisa.ex
+
+   redis:
+     image: redis
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.15
+         aliases:
+           - redis.enisa.ex
+   
+   elasticsearch5:
+     image: elasticsearch:5
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.20
+         aliases:
+           - elasticsearch5.enisa.ex
+
+   moloch:
+     image: moloch
+     depends_on:
+       - elasticsearch5
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.17
+         aliases:
+           - moloch.enisa.ex
+
+   procmail:
+     image: grumpycatinc-mailing
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.18
+         aliases:
+           - grumpycatinc.enisa.ex
+   kibana:
+     image: kibana:5.5.1
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.21
+         aliases:
+           - kibana.enisa.ex
+     environment:
+       - ELASTICSEARCH_URL=http://10.34.1.20:9200
+   
+   honeypot:
+     image: grumpycatinc-honeypot
+     volumes:
+       - ./docker/honeypot/data:/opt/shared
+     networks:
+       enisanet:
+         ipv4_address: 10.34.1.19
+         aliases:
+           - hunter.enisa.ex
+
+volumes:
+  db_data:
+
+networks:
+  enisanet:
+    ipam:
+      config:
+        - subnet: 10.34.0.0/16

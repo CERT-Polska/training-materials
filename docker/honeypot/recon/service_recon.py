@@ -27,9 +27,9 @@ if scan < SCANNING_THRESHOLD:
 sleep(randint(0,5))
 
 MAIN_DIR = abspath(dirname(__file__))
-DATA_DIR = join(MAIN_DIR, 'dorks')
+DATA_DIR = join(MAIN_DIR, 'injection_codes')
 
-# load dorks
+# load injection codes
 with open(join(DATA_DIR, 'comment'), 'r') as fp:
     comments = [line[:-1] for line in fp]
 
