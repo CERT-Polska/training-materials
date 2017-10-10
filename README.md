@@ -5,6 +5,7 @@
 Execute:
 
 ```
-$ ./build_images.sh
+$ docker-compose pull
+$ ./build_databases.sh
 $ docker-compose up
 ```

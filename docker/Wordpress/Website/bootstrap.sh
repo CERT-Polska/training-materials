@@ -11,6 +11,5 @@ mv wp-cli.phar /usr/local/bin/wp
 
 a2enmod rewrite
 
-mkdir /var/www/html -p
-chown www-data:www-data /var/www/html
-
+mkdir /var/www/template -p
+chown www-data:www-data /var/www/template

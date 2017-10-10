@@ -1,4 +1,4 @@
-FROM certbdf/thehive:latest
+FROM enisa2017/thehive:latest
 USER root
 
 COPY hosts /hosts

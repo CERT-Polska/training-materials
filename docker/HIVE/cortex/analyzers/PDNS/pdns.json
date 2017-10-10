@@ -5,7 +5,7 @@
     "url": "",
     "license": "AGPL-V3",
     "description": "Query Passive DNS",
-    "dataTypeList": ["domain"],
+    "dataTypeList": ["domain","ip"],
     "command": "PDNS/pdns.py",
     "config": {
         "required_prop": "anyvalue"

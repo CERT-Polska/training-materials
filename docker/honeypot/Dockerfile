@@ -17,6 +17,7 @@ RUN mkdir -p /opt/recon/injection_codes
 COPY ./recon/injection_codes /opt/recon/injection_codes
 COPY ./recon/service_recon.py /opt/recon
 COPY ./recon/db_converter.py /opt/recon
+COPY ./recon/last_fetched /opt/recon
 
 #install cron job for mail generator
 WORKDIR /tmp

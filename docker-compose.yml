@@ -1,4 +1,4 @@
-version: "2.1"
+version: "2.0"
 
 services:
    company-db:
@@ -15,8 +15,8 @@ services:
          ipv4_address: 10.34.1.2
          aliases:
            - company-db.enisa.ex
-     healthcheck:
-       test: ["CMD", "sleep", "20"]
+     # healthcheck:
+     #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "--password=902rsdnhiv23qre"]
 
    company-wordpress:
      image: enisa2017/wordpress
@@ -33,8 +33,8 @@ services:
          ipv4_address: 10.34.1.3
          aliases:
            - company-wordpress.enisa.ex
-     healthcheck:
-       test: ["CMD", "curl", "http://company-wordpress.enisa.ex?p=6"]
+     # healthcheck:
+     #   test: ["CMD", "curl", "http://company-wordpress.enisa.ex?p=6"]
 
    elasticsearch:
      image: elasticsearch:2
@@ -92,6 +92,8 @@ services:
          ipv4_address: 10.34.1.12
          aliases:
            - grumpycatinc.enisa.ex
+     extra_hosts:
+      - "wildhamstersec.enisa.ex:10.34.1.13"
 
    wildhamstersec-misp:
      image: enisa2017/wildhamstersec-misp
@@ -106,18 +108,20 @@ services:
            - wildhamstersec.enisa.ex
   
    intelmq:
-     image: enisa2017/intelmq
+     image: enisa2017/intelmq:1.1
      build:
          context: docker/intelmq
      depends_on:
        - honeypot
        - elasticsearch5
      volumes:
-       - ./docker/intelmq/file-output/events.txt:/opt/intelmq/var/lib/bots/file-output/events.txt
-       - ./docker/intelmq/config/defaults.conf:/opt/intelmq/etc/defaults.conf
+       - ./docker/intelmq/file-output:/tmp/file-output
        - ./docker/intelmq/config/pipeline.conf:/opt/intelmq/etc/pipeline.conf
        - ./docker/intelmq/config/runtime.conf:/opt/intelmq/etc/runtime.conf
+       - ./docker/intelmq/config/defaults.conf:/opt/intelmq/etc/defaults.conf
        - ./docker/honeypot/data:/tmp/honeypot
+       - ./docker/intelmq/file-input:/tmp/file-input
+       - ./docker/intelmq/config/positions.conf:/opt/intelmq/etc/manager/positions.conf
      links:
        - redis
      networks:

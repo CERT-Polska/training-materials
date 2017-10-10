@@ -2,21 +2,28 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MISP_DB_LOCATION=$DIR/data/misp-db-wildhamstersec
-BUILD_NAME=wildhamstersec-misp
+BUILD_NAME=enisa2017/wildhamstersec-misp
 
 docker images | grep -q $BUILD_NAME
 if [[ $? -eq 0 ]]; then
     echo "Docker Image: wildhamstersec-misp already exists"
-else
-    docker pull harvarditsecurity/misp:latest
-    docker build -t $BUILD_NAME WildHamsterSec
-fi
+    echo "Building database ..."
+    mkdir $MISP_DB_LOCATION
+
+    BACKUP_LOCATION=/tmp/misp-db-backup-wild
+
+    if [[ -d "BACKUP_LOCATION" ]]; then
+        rm -rf $BACKUP_LOCATION
+        mkdir $BACKUP_LOCATION
+    fi
+
+    tar -zxpvf "misp-db-backup-wild-1st-day.tar.gz" -C /tmp 
+    mv $BACKUP_LOCATION/* $MISP_DB_LOCATION
+    mv $BACKUP_LOCATION/.db_initialized $MISP_DB_LOCATION
+    rm -rf $BACKUP_LOCATION
 
 
-if [[ -d "$MISP_DB_LOCATION" ]]; then
-    echo "WildHamsterSec database already exists @ $MISP_DB_LOCATION"
-    echo "Exitting..."
 else
-    docker run -it --rm -v $MISP_DB_LOCATION:/var/lib/mysql $BUILD_NAME /init-db
+    echo "wildhamstersec-misp not exist: run docker-compose pull first!"
 fi
 

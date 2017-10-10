@@ -1,4 +1,4 @@
-FROM certbdf/cortex:latest
+FROM enisa2017/cortex:latest
 USER root
 
 RUN pip2 install elasticsearch
