@@ -2,11 +2,9 @@
 
 10.34.1.2 company-db.enisa.ex
 10.34.1.3 company-wordpress.enisa.ex
-10.34.1.4 moloch.enisa.ex
 10.34.1.5 sinking-ship.enisa.ex
-10.34.1.6 deadly-ursa.enisa.ex
 10.34.1.7 fancy-bear.enisa.ex
-10.34.1.8 john-pc.enisa.ex
+# 10.34.1.8 john-pc.enisa.ex - obsolete
 10.34.1.9 elasticsearch.enisa.ex
 10.34.1.10 cortex.enisa.ex
 10.34.1.11 thehive.enisa.ex
@@ -14,10 +12,12 @@
 10.34.1.13 wildhamstersec.enisa.ex
 10.34.1.14 intelmq.enisa.ex
 10.34.1.15 redis.enisa.ex
-10.34.1.16 deadly-ursa.enisa.ex
+# 10.34.1.16 deadly-ursa.enisa.ex - obsolete (ip of hacker)
 10.34.1.17 moloch.enisa.ex
 10.34.1.18 mailing.enisa.ex
 10.34.1.19 hunter.enisa.ex
 10.34.1.20 elasticsearch5.enisa.ex
 10.34.1.21 kibana.enisa.ex
-10.34.1.22 drugadomena.enisa.ex
+10.34.1.22 drugadomena.enisa.ex  # deadly-ursa.enisa.ex
+# 10.34.1.27 real-john-pc.enisa.ex
+# 10.34.1.40 real-basia-pc.enisa.ex

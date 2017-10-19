@@ -1,0 +1,94 @@
+#
+# LOKI C2 IOCs
+# This file contains C2 server and decription
+#
+# FORMAT -----------------------------------------------------------------------
+#
+# C2;COMMENT
+#
+# EXAMPLES ---------------------------------------------------------------------
+#
+# 112.22.33.234;APT Case XYZ http://url.com/12345
+# evildomain.info;AV company report XYZ http://web.url/
+
+suroot.com;FireEye Operation Snowman https://goo.gl/x1v7mT
+58.64.143.244;FireEye Operation Snowman https://goo.gl/x1v7mT
+effers.com;FireEye Operation Snowman https://goo.gl/x1v7mT
+118.99.60.142;FireEye Operation Snowman https://goo.gl/x1v7mT
+58.64.200.178;FireEye Operation Snowman https://goo.gl/x1v7mT
+58.64.200.179;FireEye Operation Snowman https://goo.gl/x1v7mT
+103.20.192.4;FireEye Operation Snowman https://goo.gl/x1v7mT
+58.64.199.22;FireEye Operation Snowman https://goo.gl/x1v7mT
+58.64.199.25;FireEye Operation Snowman https://goo.gl/x1v7mT
+180.150.228.102;FireEye Operation Snowman https://goo.gl/x1v7mT
+111.118.21.105;FireEye Operation Snowman https://goo.gl/x1v7mT
+me.scieron.com;FireEye Operation Snowman https://goo.gl/x1v7mT
+cht.blankchair.com;FireEye Operation Snowman https://goo.gl/x1v7mT
+ali.blankchair.com;FireEye Operation Snowman https://goo.gl/x1v7mT
+dll.freshdns.org;;FireEye Operation Snowman https://goo.gl/x1v7mT
+rt.blankchair.com;FireEye Operation Snowman https://goo.gl/x1v7mT
+book.flnet.org;FireEye Operation Snowman https://goo.gl/x1v7mT
+
+drivres-update.info;Sofacy report Dec 2015 https://goo.gl/WSvEM8
+intelnetservice.com;Sofacy report Dec 2015 https://goo.gl/WSvEM8
+intelsupport.net;Sofacy report Dec 2015 https://goo.gl/WSvEM8
+softupdates.info;Sofacy report Dec 2015 https://goo.gl/WSvEM8
+
+video.today-nytimes.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+api.officeonlinetool.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+ie.update-windows-microsoft.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+travel.tripmans.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+dns.undpus.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+secure2.sophosrv.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+update.nfkllyuisyahooapis.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+www.go-gga.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+images.defexpoindia14.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+update.micrdsoft.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+support.f--secure.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+store.outlook-microsoft.net;Mofang report by FoxIT https://goo.gl/t3uUTG
+b.support.outlook-microsoft.net;Mofang report by FoxIT https://goo.gl/t3uUTG
+logon.had-one-job.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+www.avgfree.us;Mofang report by FoxIT https://goo.gl/t3uUTG
+mail.upgoogle.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+wbmail.city-library.com;Mofang report by FoxIT https://goo.gl/t3uUTG
+library.cpgcorp.org;Mofang report by FoxIT https://goo.gl/t3uUTG
+103.229.124.1;Mofang report by FoxIT https://goo.gl/t3uUTG
+103.39.78.131;Mofang report by FoxIT https://goo.gl/t3uUTG
+107.191.61.105;Mofang report by FoxIT https://goo.gl/t3uUTG
+112.213.117.52;Mofang report by FoxIT https://goo.gl/t3uUTG
+116.251.210.77;Mofang report by FoxIT https://goo.gl/t3uUTG
+116.251.216.165;Mofang report by FoxIT https://goo.gl/t3uUTG
+116.251.216.227;Mofang report by FoxIT https://goo.gl/t3uUTG
+116.251.216.72;Mofang report by FoxIT https://goo.gl/t3uUTG
+116.251.219.142;Mofang report by FoxIT https://goo.gl/t3uUTG
+117.17.10.10;Mofang report by FoxIT https://goo.gl/t3uUTG
+151.236.14.53;Mofang report by FoxIT https://goo.gl/t3uUTG
+176.31.220.160;Mofang report by FoxIT https://goo.gl/t3uUTG
+178.209.51.164;Mofang report by FoxIT https://goo.gl/t3uUTG
+178.209.52.72;Mofang report by FoxIT https://goo.gl/t3uUTG
+192.157.229.164;Mofang report by FoxIT https://goo.gl/t3uUTG
+198.98.103.7;Mofang report by FoxIT https://goo.gl/t3uUTG
+210.245.85.83;Mofang report by FoxIT https://goo.gl/t3uUTG
+23.89.200.128;Mofang report by FoxIT https://goo.gl/t3uUTG
+23.89.201.173;Mofang report by FoxIT https://goo.gl/t3uUTG
+38.109.190.55;Mofang report by FoxIT https://goo.gl/t3uUTG
+49.213.18.15;Mofang report by FoxIT https://goo.gl/t3uUTG
+50.117.47.66;Mofang report by FoxIT https://goo.gl/t3uUTG
+50.117.47.67;Mofang report by FoxIT https://goo.gl/t3uUTG
+61.250.92.79;Mofang report by FoxIT https://goo.gl/t3uUTG
+
+185.78.64.121;Project Sauron https://goo.gl/eFoP4A
+rapidcomments.com;Project Sauron https://goo.gl/eFoP4A
+81.4.108.168;Project Sauron https://goo.gl/eFoP4A
+bikessport.com;Project Sauron https://goo.gl/eFoP4A
+178.211.40.117;Project Sauron https://goo.gl/eFoP4A
+176.9.242.188;Project Sauron https://goo.gl/eFoP4A
+www.myhomemusic.com;Project Sauron https://goo.gl/eFoP4A
+flowershop22.110mb.com;Project Sauron https://goo.gl/eFoP4A
+wildhorses.awardspace.info;Project Sauron https://goo.gl/eFoP4A
+217.160.176.157;Project Sauron https://goo.gl/eFoP4A
+5.196.206.166;Project Sauron https://goo.gl/eFoP4A
+
+hackqz.f3322.org;Threat actors leverage EternalBlue exploit to deliver non-WannaCry payloads https://goo.gl/OOB3mH
+120.209.40.157;Threat actors leverage EternalBlue exploit to deliver non-WannaCry payloads https://goo.gl/OOB3mH
+bj6po.a1free9bird.com;Threat actors leverage EternalBlue exploit to deliver non-WannaCry payloads https://goo.gl/OOB3mH

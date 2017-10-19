@@ -23,4 +23,6 @@ if [ ! -f .initialized ]; then
 fi
 
 service apache2 stop
+sleep 0.1
+service apache2 stop
 apache2ctl -DFOREGROUND

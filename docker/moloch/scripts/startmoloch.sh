@@ -28,14 +28,8 @@ echo INIT | /data/moloch/db/db.pl http://10.34.1.20:9200 init
 /data/moloch/bin/moloch_add_user.sh admin "Admin User" MOLOCH --admin
 /data/moloch/bin/moloch_update_geo.sh
 
-# capture
-if [ -z $1 ]; then
-	echo "Not starting capture, start capturing with giving 'capture' parameter"
-  #start with amqp reader
-else
-	echo "Starting reading PCAP: /data/pcap/traffic.pcap"
-	nohup /data/moloch/bin/moloch-capture -r /data/pcap/traffic.pcap
-fi
+echo "Starting reading PCAP: /data/pcap/traffic.pcap"
+nohup /data/moloch/bin/moloch-capture -r /data/pcap/traffic.pcap
 
 cd /data/moloch/viewer
 node viewer.js

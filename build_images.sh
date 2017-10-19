@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker build ./docker/Wordpress/Database -t enisa2017/company-db
-docker build ./docker/Wordpress/Website -t enisa2017/company-wordpress
+docker build ./docker/Wordpress/Database -t enisa2017/database
+docker build ./docker/Wordpress/Website -t enisa2017/wordpress
 docker build ./docker/Malware/DeadlyUrsa -t enisa2017/deadly-ursa
 docker build ./docker/moloch -t enisa2017/moloch
 docker build ./docker/honeypot -t enisa2017/grumpycatinc-honeypot

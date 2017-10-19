@@ -75,6 +75,8 @@ services:
        - misp
      volumes:
        - ./docker/HIVE/hive/application.conf:/etc/thehive/application.conf
+     environment:
+       - "JAVA_OPTS=-Xms512m -Xmx512m"
      networks:
        enisanet:
          ipv4_address: 10.34.1.11
@@ -145,6 +147,9 @@ services:
          ipv4_address: 10.34.1.20
          aliases:
            - elasticsearch5.enisa.ex
+     environment:
+       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+     mem_limit: 2g
 
    moloch:
      image: enisa2017/moloch

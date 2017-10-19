@@ -34,8 +34,6 @@ ADD /etc /data/moloch/etc
 
 VOLUME ["/data/moloch/logs","/data/moloch/data","/data/moloch/raw","/data/pcap"]
 
-EXPOSE 8005
-
-WORKDIR /data/moloch
+EXPOSE 8080
 
 ENTRYPOINT ["/data/startmoloch.sh"]
