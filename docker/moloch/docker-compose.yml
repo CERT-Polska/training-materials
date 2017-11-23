@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+    elasticsearch5:
+        container_name: elasticsearch_5
+        image: elasticsearch:5
+        volumes:
+            - ./data:/usr/share/elasticsearch/data
+        networks:
+            enisanet:
+                ipv4_address: 10.34.1.20
+        environment:
+            - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+        mem_limit: 2g
+
+    moloch:
+        container_name: moloch
+        image: enisa2017/moloch
+        depends_on:
+            - elasticsearch5
+        command: /data/upload-pcap.sh
+        networks:
+            enisanet:
+                ipv4_address: 10.34.1.17
+                aliases:
+                    - moloch.enisa.ex
+networks:
+  enisanet:
+    ipam:
+      config:
+        - subnet: 10.34.0.0/16

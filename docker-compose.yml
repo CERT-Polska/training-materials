@@ -142,6 +142,8 @@ services:
    
    elasticsearch5:
      image: elasticsearch:5
+     volumes:
+        - ./docker/moloch/data:/usr/share/elasticsearch/data
      networks:
        enisanet:
          ipv4_address: 10.34.1.20
@@ -174,6 +176,8 @@ services:
            - grumpycatinc.enisa.ex
    kibana:
      image: kibana:5.5.1
+     depends_on:
+       - elasticsearch5
      networks:
        enisanet:
          ipv4_address: 10.34.1.21
@@ -193,16 +197,6 @@ services:
          ipv4_address: 10.34.1.19
          aliases:
            - hunter.enisa.ex
-
-   deadly-ursa:
-     image: enisa2017/deadly-ursa
-     build:
-         context: Malware/DeadlyUrsa
-     networks:
-       enisanet:
-         ipv4_address: 10.34.1.16
-         aliases:
-           - deadly-ursa.enisa.ex
 
 volumes:
   db_data:

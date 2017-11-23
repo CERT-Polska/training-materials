@@ -67,29 +67,29 @@ with open('/opt/shared/hp_output.csv', 'w') as f:
 
         attack = randint(0, 100)
         if attack < 15:
-            inject = "/vp-json/wp/v2/posts/5/?id=3abc"
-            ip = '10.34.1.7'
+            inject = "/wp-json/wp/v2/posts/5/?id=3abc"
+            ip = '58.218.199.147'
             req = re.sub('POST.+', 'POST %s HTTP/1.1' % inject, r[4])
             writer.writerow((r[0], r[1], ip, inject, req, inject[1:], r[6]))
         elif attack > 85:
-            inject = "/vp-json/wp/v2/posts/"
-            ip = '10.34.1.7'
+            inject = "/wp-json/wp/v2/posts/"
+            ip = '58.218.199.147'
             req = re.sub('POST.+', 'POST %s HTTP/1.1' % inject, r[4])
             writer.writerow((r[0], r[1], ip, inject, req, inject[1:], r[6]))
         elif 15 < attack < 25:
             inject = "option=com_contenthistory&view=history&list[select]=SELECT%20name%20FROM%20jml_users"
-            ip = '10.34.1.7'
-            req = "GET /index.php?option=com_contenthistory&view=history&list[select]=SELECT%20name%20FROM%20jml_users HTTP/1.1\n" \
+            ip = '58.218.199.147'
+            req = "POST /index.php?option=com_contenthistory&view=history&list[select]=SELECT%20name%20FROM%20jml_users HTTP/1.1\n" \
                   "Accept: */*Accept-Encoding: gzip, deflate, compress\nContent-Length: 87\n" \
-                  "Host: 10.34.1.7\nReferer: http://10.34.1.7:80\nUser-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US)\n\n" \
+                  "Host: 58.218.199.147\nReferer: http://58.218.199.147:80\nUser-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US)\n\n" \
                   "option=com_contenthistory&view=history&list[select]=SELECT%20name%20FROM%20jml_users"
             writer.writerow((r[0], r[1], ip, inject, req, inject, r[6]))
         elif 75 < attack < 85:
             inject = "action=invokeOpByName&name=jboss.deployer:service=BSHDeployer&methodName=createScriptDeployment&argType=java.lang.String&arg0=ls&argType=java.lang.String&arg1=fj189dse.bsh"
-            ip = '10.34.1.7'
-            req = "POST /hunter.enisa.ex:80/jmx-console/HtmlAdaptor\n" \
+            ip = '58.218.199.147'
+            req = "POST /jmx-console/HtmlAdaptor\n" \
                   "Accept: */*Accept-Encoding: gzip, deflate, compress\nContent-Length: 87\nContent-Type: application/x-www-form-urlencoded\n" \
-                  "Host: 10.34.1.7\nReferer: http://10.34.1.7:80\nUser-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US)\n\n" \
+                  "Host: 58.218.199.147\nReferer: http://58.218.199.147:80\nUser-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US)\n\n" \
                   "action=invokeOpByName&name=jboss.deployer:service=BSHDeployer&methodName=createScriptDeployment&argType=java.lang.String&arg0=ls&argType=java.lang.String&arg1=fj189dse.bsh"
             writer.writerow((r[0], r[1], ip, inject, req, inject, r[6]))
         else:

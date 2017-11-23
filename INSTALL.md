@@ -1,5 +1,3 @@
-# ![Enisa logo](/graphs/logo-enisa.png?raw=true) exercises 2017
-
 **Table of Contents**
 
 1. [Requirements](#requirements)
