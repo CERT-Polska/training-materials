@@ -3,6 +3,5 @@
 data/
 docker/HIVE/elasticsearch/data
 docker/intelmq/logs
-docker/intelmq/file-output
 docker/honeypot/data
 docker/HIVE/elasticsearch/data/hive
