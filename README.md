@@ -25,9 +25,11 @@
 
 
 ```
-# apt-get install docker docker-compose curl
+# apt-get install docker docker-compose curl python-bs4
 ```
-
+#### WPScan installation
+Proceed with installation manual:
+https://github.com/wpscanteam/wpscan#manual-install
 
 # Installation
 
